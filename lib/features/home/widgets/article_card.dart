@@ -28,21 +28,33 @@ class ArticleCard extends StatelessWidget {
             children: [
               SizedBox(
                 width: 238.w,
-                child: Text(title, style: TextStyles.homeText18Black)),
+                child: Text(
+                  title,
+                  maxLines: 2,
+                  style: TextStyles.homeText18Black,
+                ),
+              ),
               SizedBox(height: 8.h),
-              Text('$authorName . $date', style: TextStyles.homeText12Grey),
+              SizedBox(
+                width: 238.w,
+                child: Text(
+                  '$authorName . $date',
+                  style: TextStyles.homeText12Grey,
+                ),
+              ),
             ],
           ),
-            SizedBox(
+          SizedBox(
             width: 112.w,
             height: 80.h,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(8.r),
               child: CachedNetworkImage(
-                imageUrl: imageUrl ?? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQML9OdsC38Ii_3yXkAUV_I6laUNm6th5DtMg&s',
+                imageUrl:
+                    imageUrl ??
+                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQML9OdsC38Ii_3yXkAUV_I6laUNm6th5DtMg&s',
                 height: 206.h,
                 fit: BoxFit.fill,
-                  
               ),
             ),
           ),

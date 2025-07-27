@@ -17,10 +17,12 @@ class HomeScreenServiecs {
         TopHeadlinesModel topHeadlinesModel = TopHeadlinesModel.fromJson(
           response.data,
         );
+        log(topHeadlinesModel.totalResults.toString());
         return topHeadlinesModel;
       }
     } catch (e) {
       log(e.toString());
+      return Future.error(e.toString());
     }
   }
 }
