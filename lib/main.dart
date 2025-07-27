@@ -2,11 +2,13 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_ganeral/core/helper_functions/on_generate_routes.dart';
+import 'package:news_ganeral/core/network/dio_helper.dart';
 import 'package:news_ganeral/features/home/home_view.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
+  DioHelper.initDio();
 
   runApp(
     EasyLocalization(
