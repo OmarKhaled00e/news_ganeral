@@ -1,15 +1,14 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:news_ganeral/core/constants/constants.dart';
-import 'package:news_ganeral/core/network/api_endpoints.dart';
-import 'package:news_ganeral/core/network/dio_helper.dart';
 import 'package:news_ganeral/core/styles/app_text_styles.dart';
 import 'package:news_ganeral/features/home/models/top_headlines_model.dart';
 import 'package:news_ganeral/features/home/services/home_screen_serviecs.dart';
 import 'package:news_ganeral/features/home/widgets/article_card.dart';
 import 'package:news_ganeral/features/home/widgets/custom_category_item.dart';
+import 'package:news_ganeral/features/home/widgets/search_text_field.dart';
 import 'package:news_ganeral/features/home/widgets/top_headlin_item.dart';
+import 'package:news_ganeral/features/search_result/search_result_view.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -31,10 +30,7 @@ class _HomeViewState extends State<HomeView> {
     return Scaffold(
       appBar: AppBar(
         actions: [
-          IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.search, color: Color(0xFF231F20)),
-          ),
+          SearchTextField(),
         ],
         backgroundColor: Color(0xFFE9EEFA),
         toolbarHeight: 120.h,
@@ -52,8 +48,7 @@ class _HomeViewState extends State<HomeView> {
             return Center(child: Text(snapshot.error.toString()));
           }
           if (snapshot.hasData) {
-            TopHeadlinesModel topHeadlinesModel =
-                snapshot.data! as TopHeadlinesModel;
+            ArticlesModel topHeadlinesModel = snapshot.data! as ArticlesModel;
             if (topHeadlinesModel.totalResults == 0) {
               return Center(child: Text('no_results'.tr()));
             }
@@ -68,10 +63,46 @@ class _HomeViewState extends State<HomeView> {
                       scrollDirection: Axis.horizontal,
                       physics: BouncingScrollPhysics(),
                       children: [
-                        CustomCategoryItem(title: 'travel'.tr()),
-                        CustomCategoryItem(title: 'technology'.tr()),
-                        CustomCategoryItem(title: 'business'.tr()),
-                        CustomCategoryItem(title: 'entertainment'.tr()),
+                        CustomCategoryItem(
+                          title: 'travel'.tr(),
+                          onTap: () {
+                            Navigator.pushNamed(
+                              context,
+                              SearchResultView.routeName,
+                              arguments: 'travel'.tr(),
+                            );
+                          },
+                        ),
+                        CustomCategoryItem(
+                          title: 'technology'.tr(),
+                          onTap: () {
+                            Navigator.pushNamed(
+                              context,
+                              SearchResultView.routeName,
+                              arguments: 'technology'.tr(),
+                            );
+                          },
+                        ),
+                        CustomCategoryItem(
+                          title: 'business'.tr(),
+                          onTap: () {
+                            Navigator.pushNamed(
+                              context,
+                              SearchResultView.routeName,
+                              arguments: 'business'.tr(),
+                            );
+                          },
+                        ),
+                        CustomCategoryItem(
+                          title: 'entertainment'.tr(),
+                          onTap: () {
+                            Navigator.pushNamed(
+                              context,
+                              SearchResultView.routeName,
+                              arguments: 'entertainment'.tr(),
+                            );
+                          },
+                        ),
                       ],
                     ),
                   ),
@@ -105,7 +136,9 @@ class _HomeViewState extends State<HomeView> {
                           imageUrl: article.urlToImage,
                           title: article.title ?? " ",
                           authorName: article.author ?? ' ',
-                          date: DateFormat('yyyy-MM-dd - kk:mm').format(article.publishedAt!),
+                          date: DateFormat(
+                            'yyyy-MM-dd - kk:mm',
+                          ).format(article.publishedAt!),
                         );
                       },
                     ),

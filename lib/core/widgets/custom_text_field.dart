@@ -10,7 +10,7 @@ class CustomTextField extends StatelessWidget {
     this.hintText,
     this.suffixIcon,
     this.maxLines,
-    this.width, this.isPassword, this.controller, this.validator, this.keyboardInputType,
+    this.width, this.isPassword, this.controller, this.validator, this.keyboardInputType, this.onFieldSubmitted,
   });
   final String? hintText;
   final double? width;
@@ -20,6 +20,7 @@ class CustomTextField extends StatelessWidget {
   final String? Function(String?)? validator;
   final TextInputType? keyboardInputType;
   final int? maxLines;
+  final void Function(String)? onFieldSubmitted; 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -32,6 +33,7 @@ class CustomTextField extends StatelessWidget {
         obscureText: isPassword ?? false,
         autofocus: false,
         cursorColor: AppColors.black,
+        onFieldSubmitted: onFieldSubmitted,
         decoration: InputDecoration(
           hint: Text(hintText ?? ''),
           hintStyle: TextStyle(
