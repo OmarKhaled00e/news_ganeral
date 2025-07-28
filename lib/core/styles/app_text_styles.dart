@@ -25,5 +25,10 @@ class TextStyles {
     fontWeight: FontWeight.w400,
     color: Color(0xff6D6265),
   );
+  static TextStyle articleDescripton16Black = GoogleFonts.inter(
+    fontSize: 16.sp,
+    fontWeight: FontWeight.w400,
+    color: Color(0xff231F20),
+  );
   
 }

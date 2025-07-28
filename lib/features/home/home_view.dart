@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:news_ganeral/core/constants/constants.dart';
 import 'package:news_ganeral/core/styles/app_text_styles.dart';
 import 'package:news_ganeral/features/home/models/top_headlines_model.dart';
 import 'package:news_ganeral/features/home/services/home_screen_serviecs.dart';
@@ -31,6 +32,17 @@ class _HomeViewState extends State<HomeView> {
       appBar: AppBar(
         actions: [
           SearchTextField(),
+          IconButton(
+            onPressed: () {
+              if (context.locale.languageCode == 'en') {
+                context.setLocale(Locale('ar'));
+              } else {
+                context.setLocale(Locale('en'));
+              }
+              AppConstants.lang = context.locale.languageCode;
+            },
+            icon: Icon(Icons.language, color: Colors.black),
+          ),
         ],
         backgroundColor: Color(0xFFE9EEFA),
         toolbarHeight: 120.h,
@@ -132,14 +144,7 @@ class _HomeViewState extends State<HomeView> {
                       itemCount: topHeadlinesModel.articles!.length,
                       itemBuilder: (context, index) {
                         Article article = topHeadlinesModel.articles![index];
-                        return ArticleCard(
-                          imageUrl: article.urlToImage,
-                          title: article.title ?? " ",
-                          authorName: article.author ?? ' ',
-                          date: DateFormat(
-                            'yyyy-MM-dd - kk:mm',
-                          ).format(article.publishedAt!),
-                        );
+                        return ArticleCard(article: article);
                       },
                     ),
                   ),

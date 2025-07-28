@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:news_ganeral/core/constants/constants.dart';
 import 'package:news_ganeral/core/helper_functions/on_generate_routes.dart';
 import 'package:news_ganeral/core/network/dio_helper.dart';
 import 'package:news_ganeral/features/home/home_view.dart';
@@ -16,7 +17,7 @@ void main() async {
       path:
           'assets/translations', // <-- change the path of the translation files
       fallbackLocale: Locale('ar'),
-      // startLocale: Locale('ar'),
+      startLocale: Locale(AppConstants.lang),
       child: NewsGaneral(),
     ),
   );

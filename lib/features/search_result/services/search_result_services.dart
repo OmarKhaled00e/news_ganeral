@@ -10,7 +10,7 @@ class SearchResultServices {
     try {
       final response = await DioHelper.getRequest(
         endPoint: ApiEndpoints.searchEndpoint,
-        query: {'apiKey': AppConstants.newsApiKey, 'q': query},
+        query: {'apiKey': AppConstants.newsApiKey, 'q': query, 'Language' : AppConstants.lang},
       );
 
       if (response.statusCode == 200) {
