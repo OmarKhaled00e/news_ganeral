@@ -1,11 +1,10 @@
 import 'dart:developer';
-
 import 'package:news_ganeral/core/constants/constants.dart';
 import 'package:news_ganeral/core/network/api_endpoints.dart';
 import 'package:news_ganeral/core/network/dio_helper.dart';
 import 'package:news_ganeral/features/home/models/top_headlines_model.dart';
 
-class HomeScreenServiecs {
+class HomeRepo {
   getTopHeadLineArticle() async {
     try {
       final response = await DioHelper.getRequest(
@@ -24,3 +23,4 @@ class HomeScreenServiecs {
     }
   }
 }
+

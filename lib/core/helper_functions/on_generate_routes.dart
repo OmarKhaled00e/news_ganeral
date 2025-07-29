@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_ganeral/features/home/article_details_view.dart';
+import 'package:news_ganeral/features/home/cubit/cubit/home_cubit.dart';
 import 'package:news_ganeral/features/home/home_view.dart';
 import 'package:news_ganeral/features/home/models/top_headlines_model.dart';
 import 'package:news_ganeral/features/search_result/search_result_view.dart';
@@ -7,7 +9,14 @@ import 'package:news_ganeral/features/search_result/search_result_view.dart';
 Route<dynamic> onGenerateRoute(RouteSettings settings) {
   switch (settings.name) {
     case HomeView.routeName:
-      return MaterialPageRoute(builder: (context) => const HomeView());
+      return MaterialPageRoute(
+        builder: (context) {
+          return BlocProvider(
+            create: (context) => HomeCubit(),
+            child: const HomeView(),
+          );
+        },
+      );
     case ArticleDetailsView.routeName:
       return MaterialPageRoute(
         builder: (context) {
